@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="708b51c4-5401-45d0-acc7-a320d01366f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hello_world/lib/hello_world_controller.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hello_world/lib/other.dart" afterDir="false" />
-    </list>
+    <list default="true" id="708b51c4-5401-45d0-acc7-a320d01366f0" name="Changes" comment="GetX的计数器示例" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -69,6 +71,14 @@
       <option name="presentableId" value="Default" />
       <updated>1690432817631</updated>
     </task>
+    <task id="LOCAL-00001" summary="GetX的计数器示例">
+      <created>1690440154650</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1690440154650</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,6 +103,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="GetX的计数器示例" />
+    <option name="LAST_COMMIT_MESSAGE" value="GetX的计数器示例" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
