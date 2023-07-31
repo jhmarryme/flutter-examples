@@ -1,0 +1,24 @@
+{
+  "ResponseStatus": {
+    "Timestamp": "/Date(1689070765761+0800)/",
+    "Ack": "Failure",
+    "Errors": [
+      {
+        "Message": "Unable to deserialize type class com.ctrip.gs.tripshoot.SearchTripShootListForHomePageV2RequestType",
+        "ErrorCode": "FXD302000",
+        "SeverityCode": "Error",
+        "ErrorClassification": "ValidationError"
+      }
+    ],
+    "Extension": [
+      {
+        "Id": "CLOGGING_TRACE_ID",
+        "Value": "3941652784529912862"
+      },
+      {
+        "Id": "RootMessageId",
+        "Value": "100025527-0a3d5202-469186-961385"
+      }
+    ]
+  }
+}
