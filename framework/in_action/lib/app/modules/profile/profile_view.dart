@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_action/app/dao/quiz/quiz.dart';
-import 'package:in_action/app/services/auth_service.dart';
+import 'package:in_action/services/auth/auth_service.dart';
 
 import 'profile_controller.dart';
 
@@ -114,14 +114,14 @@ class ProfileView extends GetView<ProfileController> {
               padding: EdgeInsets.only(top: 50),
               child: Text('该题已经验证无误', style: TextStyle(color: Colors.green)),
             ),
-          if (quiz.verified != '1' || AuthService.to.userId.value == 1)
+          if (quiz.verified != '1' || AuthService.to.state.userId.value == 1)
             Padding(
               padding: const EdgeInsets.only(top: 50.0, left: 5),
               child: ElevatedButton(
                   onPressed: () => controller.updateCount(quiz.id!, 1),
                   child: Text('标记为正确')),
             ),
-          if (quiz.verified != '1' || AuthService.to.userId.value == 1)
+          if (quiz.verified != '1' || AuthService.to.state.userId.value == 1)
             Padding(
               padding: const EdgeInsets.only(top: 50.0, left: 5),
               child: ElevatedButton(

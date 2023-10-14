@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:in_action/app/components/network_image.dart';
-import 'package:in_action/app/services/auth_service.dart';
+import 'package:in_action/services/auth/auth_service.dart';
 import 'package:in_action/utils/constans.dart';
 
 import 'login_logic.dart';

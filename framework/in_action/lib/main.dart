@@ -1,21 +1,29 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:in_action/app/components/responsive/responsive_helper.dart'
     as responsive;
 import 'package:in_action/app/routes/app_pages.dart';
-import 'package:in_action/app/services/auth_service.dart';
+import 'package:in_action/config/dependency_injection.dart';
 import 'package:in_action/config/translations/localization_service.dart';
+import 'package:in_action/utils/MobileLikeScrollBehavior.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+import 'config/dio_config.dart';
+import 'config/easy_loading_config.dart';
+import 'services/auth/auth_service.dart';
+
+void main() async {
+  await DependencyInjection.init();
+
   runApp(DevicePreview(
-    enabled: kDebugMode && kIsWeb,
-    // enabled: false,
+    // enabled: kDebugMode && kIsWeb,
+    enabled: false,
     builder: (context) => const MyApp(),
   ));
+  initDio();
+  configLoading();
 }
 
 class MyApp extends StatefulWidget {
@@ -29,6 +37,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      scrollBehavior: MobileLikeScrollBehavior(),
       title: "Getx Template app",
       useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
@@ -41,7 +50,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               //     .apply(bodyColor: Colors.white),
               // canvasColor: Color(0xFF2A2D3E),
               ),
-          child: child!,
+          // 初始化easyLoading
+          child: FlutterEasyLoading(child: child),
         );
       },
       initialRoute: AppPages.INITIAL,

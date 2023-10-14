@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:in_action/app/middleware/auth_middleware.dart';
 import 'package:in_action/app/modules/dashboard/dashboard_binding.dart';
 import 'package:in_action/app/modules/dashboard/dashboard_view.dart';
+import 'package:in_action/app/modules/examples/refresh/refresh_binding.dart';
+import 'package:in_action/app/modules/examples/refresh/refresh_view.dart';
 import 'package:in_action/app/modules/home/home_binding.dart';
 import 'package:in_action/app/modules/home/views/home_view.dart';
 import 'package:in_action/app/modules/login/login_binding.dart';
@@ -70,8 +72,8 @@ class AppPages {
         ),
         GetPage(
           name: _Paths.products,
-          page: () => const DashboardView(),
-          bindings: [DashboardBinding()],
+          page: () => const RefreshView(),
+          bindings: [RefreshBinding()],
         ),
       ]);
 

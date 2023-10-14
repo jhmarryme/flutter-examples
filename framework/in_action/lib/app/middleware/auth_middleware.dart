@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:in_action/app/routes/app_pages.dart';
-import 'package:in_action/app/services/auth_service.dart';
+import 'package:in_action/services/auth/auth_service.dart';
 
 class EnsureAuthMiddleware extends GetMiddleware {
   @override
@@ -9,7 +9,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
     // but it's preferable to make this method fast
     // await Future.delayed(Duration(milliseconds: 500));
 
-    if (!AuthService.to.isLoggedInValue) {
+    if (!AuthService.to.isLogin) {
       final newRoute = Routes.LOGIN_THEN(route.pageSettings!.name);
       return RouteDecoder.fromRoute(newRoute);
     }
@@ -20,7 +20,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
 class EnsureNotAuthedMiddleware extends GetMiddleware {
   @override
   Future<RouteDecoder?> redirectDelegate(RouteDecoder route) async {
-    if (AuthService.to.isLoggedInValue) {
+    if (AuthService.to.isLogin) {
       //NEVER navigate to auth screen, when user is already authed
       return null;
 

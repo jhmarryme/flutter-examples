@@ -35,21 +35,35 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: 5.0.0-release-candidate-5
-  http_mock_adapter: 0.4.4
+  #  http_mock_adapter: 0.4.4
   # 网络库 https://github.com/cfug/dio
   dio: ^5.3.2
   flutter_screenutil: ^5.8.4
   device_preview: ^1.1.0
   responsive_builder: ^0.7.0
-  google_fonts: ^5.1.0
+  # google_fonts: ^5.1.0
   flutter_custom_clippers: ^2.1.0
   # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
   cached_network_image: ^3.2.3
   logger: ^2.0.2
   # 获取当前设备信息 https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus
   device_info_plus: ^9.0.3
-  sp_util: ^2.0.3
+  # sp_util: ^2.0.3
   collection: any
+  # 刷新指示器
+  custom_refresh_indicator: ^2.2.1
+  easy_refresh: ^3.3.2+1
+  # 加载指示器图标
+  flutter_spinkit: ^5.2.0
+  json_serializable: ^6.7.1
+  # loading动画效果、进度条展示、Toast展示 https://pub.dev/packages/flutter_easyloading
+  flutter_easyloading: ^3.0.5
+  # Dart 编写的轻量级且快速的键值数据库 https://pub-web.flutter-io.cn/packages/hive/versions/4.0.0-dev.2
+  # 后续版本稳定了考虑使用hive4
+  # hive: ^4.0.0-dev.2
+  # isar_flutter_libs: ^4.0.0-dev.13
+  url_launcher: ^6.1.14
+  get_storage: ^2.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,6 +74,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+#  path_provider: ^2.1.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -91,7 +106,7 @@ flutter:
   # fonts:
   #   - family: Schyler
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/;;;;;Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
@@ -102,3 +117,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+#
+flutter_json:
+  enable: true
+  generated_path: app/json

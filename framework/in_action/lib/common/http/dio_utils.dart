@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:in_action/common/http/model/api_page_response_entity.dart';
+import 'package:in_action/common/http/model/api_response_entity.dart';
 import 'package:in_action/utils/log_utils.dart';
-import 'package:in_action/utils/sys_contants.dart';
 
 import 'error_handle.dart';
-import 'http_base_entity.dart';
+import 'model/paging_data_entity.dart';
 
 /// 默认dio配置
 Duration _connectTimeout = const Duration(seconds: 15);
@@ -30,9 +31,10 @@ void configDio({
   _interceptors = interceptors ?? _interceptors;
 }
 
-typedef NetSuccessCallback<T> = Function(T data);
+typedef NetSuccessCallback<T> = Function(T? data);
+typedef PageNetSuccessCallback<T> = Function(PagingDataEntity<T>? data);
 typedef NetSuccessListCallback<T> = Function(List<T> data);
-typedef NetErrorCallback = Function(String? code, String? msg);
+typedef NetErrorCallback = Function(int? code, String? msg);
 
 class DioUtils {
   factory DioUtils() => _singleton;
@@ -42,9 +44,6 @@ class DioUtils {
       connectTimeout: _connectTimeout,
       receiveTimeout: _receiveTimeout,
       sendTimeout: _sendTimeout,
-
-      /// dio默认json解析，这里指定返回UTF8字符串，自己处理解析。（可也以自定义Transformer实现）
-      responseType: ResponseType.plain,
       validateStatus: (_) {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
@@ -78,9 +77,14 @@ class DioUtils {
   static late Dio _dio;
 
   Dio get dio => _dio;
+  Options _checkOptions(String method, Options? options) {
+    options ??= Options();
+    options.method = method;
+    return options;
+  }
 
   // 数据返回格式统一，统一处理异常
-  Future<HttpBaseEntity<T>> _request<T>(
+  Future<ApiResponseEntity<T>> _request<T>(
     String method,
     String url, {
     Object? data,
@@ -88,7 +92,7 @@ class DioUtils {
     CancelToken? cancelToken,
     Options? options,
   }) async {
-    final Response<String> response = await _dio.request<String>(
+    final Response response = await _dio.request(
       url,
       data: data,
       queryParameters: queryParameters,
@@ -96,33 +100,43 @@ class DioUtils {
       cancelToken: cancelToken,
     );
     try {
-      final String data = response.data.toString();
-
-      /// 集成测试无法使用 isolate https://github.com/flutter/flutter/issues/24703
-      /// 使用compute条件：数据大于10KB（粗略使用10 * 1024）且当前不是集成测试（后面可能会根据Web环境进行调整）
-      /// 主要目的减少不必要的性能开销
-      final bool isCompute =
-          !SysConstant.isDriverTest && data.length > 10 * 1024;
-      debugPrint('isCompute:$isCompute');
-      final Map<String, dynamic> map =
-          isCompute ? await compute(parseData, data) : parseData(data);
-      return HttpBaseEntity<T>.fromJson(map);
+      return ApiResponseEntity<T>.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
-      return HttpBaseEntity<T>(ExceptionHandle.parse_error, '数据解析错误！');
+      return ApiResponseEntity(
+          code: ExceptionHandle.parse_error, msg: "数据解析错误");
     }
   }
 
-  Options _checkOptions(String method, Options? options) {
-    options ??= Options();
-    options.method = method;
-    return options;
+  // 数据返回格式统一，统一处理异常
+  Future<ApiPageResponseEntity<T>> _requestPage<T>(
+    String method,
+    String url, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    Options? options,
+  }) async {
+    final Response response = await _dio.request(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: _checkOptions(method, options),
+      cancelToken: cancelToken,
+    );
+    try {
+      return ApiPageResponseEntity<T>.fromJson(response.data);
+    } catch (e) {
+      debugPrint(e.toString());
+      return ApiPageResponseEntity(
+          code: ExceptionHandle.parse_error, msg: "数据解析错误");
+    }
   }
 
   Future<dynamic> requestNetwork<T>(
     Method method,
     String url, {
-    NetSuccessCallback<T?>? onSuccess,
+    NetSuccessCallback<T>? onSuccess,
     NetErrorCallback? onError,
     Object? params,
     Map<String, dynamic>? queryParameters,
@@ -136,11 +150,41 @@ class DioUtils {
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    ).then<void>((HttpBaseEntity<T> result) {
-      if (result.code == 0) {
+    ).then((ApiResponseEntity<T> result) {
+      if (result.code == 200) {
         onSuccess?.call(result.data);
       } else {
-        _onError(result.code, result.message, onError);
+        _onError(result.code, result.msg, onError);
+      }
+    }, onError: (dynamic e) {
+      _cancelLogPrint(e, url);
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    });
+  }
+
+  Future<dynamic> requestPageNetwork<T>(
+    Method method,
+    String url, {
+    PageNetSuccessCallback<T>? onSuccess,
+    NetErrorCallback? onError,
+    Object? params,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    Options? options,
+  }) {
+    return _requestPage<T>(
+      method.value,
+      url,
+      data: params,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    ).then((ApiPageResponseEntity<T> result) {
+      if (result.code == 200) {
+        onSuccess?.call(result.data);
+      } else {
+        _onError(result.code, result.msg, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
@@ -170,10 +214,10 @@ class DioUtils {
     )).asBroadcastStream().listen((result) {
       if (result.code == 0) {
         if (onSuccess != null) {
-          onSuccess(result.data);
+          // onSuccess(result.data);
         }
       } else {
-        _onError(result.code, result.message, onError);
+        // _onError(result.code, result.message, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
@@ -188,7 +232,7 @@ class DioUtils {
     }
   }
 
-  void _onError(String? code, String? msg, NetErrorCallback? onError) {
+  void _onError(int? code, String? msg, NetErrorCallback? onError) {
     if (code == null) {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';

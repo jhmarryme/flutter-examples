@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_action/app/routes/app_pages.dart';
-import 'package:in_action/app/services/auth_service.dart';
+import 'package:in_action/services/auth/auth_service.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class DrawerWidget extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          if (AuthService.to.isLoggedInValue)
+          if (AuthService.to.isLogin)
             ListTile(
               title: const Text(
                 'Logout',
@@ -49,7 +49,7 @@ class DrawerWidget extends StatelessWidget {
                 Navigator.of(context).pop();
               },
             ),
-          if (!AuthService.to.isLoggedInValue)
+          if (!AuthService.to.isLogin)
             ListTile(
               title: const Text(
                 'Login',
