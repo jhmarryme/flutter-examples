@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test_in_action/app/dao/quiz/quiz.dart';
 import 'package:test_in_action/app/dao/quiz/userLogin.dart';
-import 'package:test_in_action/services/auth/auth_service.dart';
+import 'package:test_in_action/services/auth_service.dart';
 
 class QuizDao {
   static final dio = Dio();

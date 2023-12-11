@@ -3,7 +3,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/network_image.dart';
 import 'package:test_in_action/common/constants/constans.dart';
-import 'package:test_in_action/services/auth/auth_service.dart';
+import 'package:test_in_action/services/auth_service.dart';
 
 import 'login_logic.dart';
 

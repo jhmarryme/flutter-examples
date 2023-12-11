@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../login_logic.dart';
-import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
 
-class LoginViewLarge extends GetView<LoginLogic> {
+class LoginViewLarge extends GetView<LoginLogicBack> {
   const LoginViewLarge({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +16,7 @@ class LoginViewLarge extends GetView<LoginLogic> {
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [SizedBox(width: 300, child: LoginForm())],
+            children: [SizedBox(width: 300, child: LoginFormBack())],
           ),
         ),
       ],

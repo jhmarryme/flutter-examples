@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
-import 'package:test_in_action/common/styles/sidebarx_style.dart';
+import 'package:test_in_action/common/builder/sidebarx_style_builder.dart';
 
 void main() {
   runApp(SidebarXExampleApp());
@@ -33,10 +33,11 @@ class SidebarXExampleApp extends StatelessWidget {
           children: [
             SidebarX(
               controller: _controller,
-              theme: SidebarxStyle.theme(),
-              extendedTheme: SidebarxStyle.extendedTheme(),
-              footerDivider: SidebarxStyle.divider(),
-              headerBuilder: (context, extended) => SidebarxStyle.header(),
+              theme: SidebarxStyleBuilder.theme(),
+              extendedTheme: SidebarxStyleBuilder.extendedTheme(),
+              footerDivider: SidebarxStyleBuilder.divider(),
+              headerBuilder: (context, extended) =>
+                  SidebarxStyleBuilder.header(),
               items: [
                 SidebarXItem(
                   icon: Icons.home,

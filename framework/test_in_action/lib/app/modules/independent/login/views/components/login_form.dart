@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/buissiness/already_have_an_account_acheck.dart';
 import 'package:test_in_action/app/modules/independent/login/login_logic.dart';
-import 'package:test_in_action/app/routes/app_pages.dart';
+import 'package:test_in_action/app/routes/backup/app_pages.dart';
 import 'package:test_in_action/common/constants/style_constants.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
+class LoginFormBack extends StatelessWidget {
+  const LoginFormBack({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.find<LoginLogic>();
+    final logic = Get.find<LoginLogicBack>();
     return Form(
       child: Column(
         children: [
@@ -57,7 +57,7 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: StyleConstants.defaultPadding),
           AlreadyHaveAnAccountCheck(
-            press: () => Get.toNamed(Routes.signUp),
+            press: () => Get.toNamed(Routes.home),
           ),
         ],
       ),

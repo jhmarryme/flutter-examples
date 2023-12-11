@@ -14,9 +14,9 @@ class WelcomeViewSmall extends GetView<WelcomeLogic> {
         WelcomeImage(),
         Row(
           children: [
-            Spacer(),
-            Expanded(flex: 8, child: LoginAndSignupBtn()),
-            Spacer(),
+            Spacer(flex: 2),
+            Expanded(flex: 5, child: LoginAndSignupBtn()),
+            Spacer(flex: 2),
           ],
         ),
       ],

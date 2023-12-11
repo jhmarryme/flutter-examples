@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/config/global/globa_enums.dart';
+import 'package:test_in_action/common/constants/enums/global_enums.dart';
 
 import 'en_US/en_us_translation.dart';
 import 'zh_CN/zh_cn_translation.dart';
@@ -25,6 +25,11 @@ class LocalizationService extends Translations {
     Language.en.value: const Locale('en', 'US'),
     Language.zh.value: const Locale('zh', 'CN'),
   };
+
+  static Iterable<Locale> supportedLocales = [
+    const Locale('en', 'US'),
+    const Locale('zh', 'CN'),
+  ];
 
   // supported languages fonts family (must be in assets & pubspec yaml) or you can use google fonts
   static Map<String, TextStyle> supportedLanguagesFontsFamilies = {

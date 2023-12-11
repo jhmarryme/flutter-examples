@@ -4,7 +4,7 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/EasyRefreshStyle.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/builder/easy_refresh_builder.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/sample_get_page_logic.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/skeleton_item.dart';

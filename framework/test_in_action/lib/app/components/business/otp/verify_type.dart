@@ -1,0 +1,4 @@
+enum VerifyType {
+  phone,
+  email,
+}

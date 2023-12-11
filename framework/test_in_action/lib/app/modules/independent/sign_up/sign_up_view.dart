@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/background.dart';
-import 'package:test_in_action/app/components/responsive/responsive_helper.dart'
-    as responsive;
+import 'package:test_in_action/app/components/responsive/responsive_helper.dart';
 
 import 'sign_up_logic.dart';
 import 'views/sign_up_view_large.dart';
@@ -18,7 +17,7 @@ class SignUpView extends StatelessWidget {
 
     return const Background(
       child: SingleChildScrollView(
-        child: responsive.WidgetBuilder(
+        child: ResponsiveWidgetBuilder(
           mobile: SignUpViewSmall(),
           tablet: SignUpViewLarge(),
           desktop: SignUpViewLarge(),

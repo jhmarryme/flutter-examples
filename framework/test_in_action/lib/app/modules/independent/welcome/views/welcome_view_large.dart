@@ -11,15 +11,10 @@ class WelcomeViewLarge extends GetView<WelcomeLogic> {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Expanded(child: WelcomeImage()),
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(width: 300, child: LoginAndSignupBtn()),
-            ],
-          ),
-        ),
+        Expanded(flex: 5, child: WelcomeImage()),
+        Spacer(flex: 1),
+        Expanded(flex: 2, child: LoginAndSignupBtn()),
+        Spacer(flex: 1),
       ],
     );
   }

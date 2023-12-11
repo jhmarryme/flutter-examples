@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/modules/home/index/home_logic.dart';
-import 'package:test_in_action/app/routes/app_pages.dart';
+import 'package:test_in_action/app/routes/backup/app_pages.dart';
 
 class HomeViewSmall extends GetView<HomeLogic> {
   const HomeViewSmall({Key? key}) : super(key: key);

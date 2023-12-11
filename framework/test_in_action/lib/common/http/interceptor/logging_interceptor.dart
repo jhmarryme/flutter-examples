@@ -11,10 +11,10 @@ abstract class LoggingInterceptor extends Interceptor {
     _startTime = DateTime.now();
     LogUtil.d('----------Start----------');
     if (options.queryParameters.isEmpty) {
-      LogUtil.d('RequestUrl: ${options.baseUrl}${options.path}');
+      LogUtil.d('RequestUrl: ${options.baseUrl}-----${options.path}');
     } else {
       LogUtil.d(
-          'RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
+          'RequestUrl: ${options.baseUrl}-----${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
     }
     LogUtil.d('RequestMethod: ${options.method}');
     LogUtil.d('RequestHeaders:${options.headers}');

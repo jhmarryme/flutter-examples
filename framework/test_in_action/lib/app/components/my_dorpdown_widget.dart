@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:test_in_action/config/translations/strings_enum.dart';
 
 class MyDropdownWidget<K> extends StatelessWidget {
-  // key-value， 下拉显示内容,  key为选择时的selectedValue， value为需要显示的内容，
-  final Map<K, String> map;
+  // key-value， 下拉显示内容,  key为需要显示的内容, value为选择时的selectedValue
+  final Map<String, K> map;
 
   // 默认选择的value
   final K selectedValue;
@@ -30,8 +30,8 @@ class MyDropdownWidget<K> extends StatelessWidget {
       ),
       items: map.entries
           .map((e) => DropdownMenuItem<K>(
-                value: e.key,
-                child: Text(e.value.tr, style: const TextStyle(fontSize: 14)),
+                value: e.value,
+                child: Text(e.key.tr, style: const TextStyle(fontSize: 14)),
               ))
           .toList(),
       value: selectedValue,

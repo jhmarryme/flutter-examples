@@ -1,12 +1,12 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/EasyRefreshStyle.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/widget/base_get_page_logic.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/widget/refresh_status.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/builder/easy_refresh_builder.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/refresh_on_start_base_logic.dart';
 import 'package:test_in_action/utils/log_utils.dart';
 
-class MyEasyRefresh<GetLogic extends BaseGetPageLogic> extends StatelessWidget {
+class MyEasyRefresh<GetLogic extends RefreshOnStartBaseLogic>
+    extends StatelessWidget {
   MyEasyRefresh({Key? key, required this.tag, required this.child})
       : super(key: key) {
     // 在构造函数中添加初始化逻辑

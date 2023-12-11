@@ -39,6 +39,9 @@ abstract class TokenInterceptor extends QueuedInterceptor {
         } on DioException catch (e) {
           return handler.reject(e);
         }
+      } else {
+        handleNotLogin();
+        return handler.next(response);
       }
     }
     super.onResponse(response, handler);
@@ -56,8 +59,11 @@ abstract class TokenInterceptor extends QueuedInterceptor {
     return null;
   }
 
+  ///
   String getRefreshToken();
 
   /// 通过refreshToken换取一个新的token
   String? doRefreshToken(String refreshToken);
+
+  void handleNotLogin();
 }

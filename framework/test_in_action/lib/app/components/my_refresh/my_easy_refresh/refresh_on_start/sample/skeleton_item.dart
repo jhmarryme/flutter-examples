@@ -29,10 +29,10 @@ class SkeletonItem extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                height: 80,
+                height: 150,
                 width: 80,
                 color: foregroundColor,
-                child: Text(index == null ? '' : index as String),
+                child: Text(index == null ? '' : index.toString()),
               ),
               Expanded(
                 child: Column(

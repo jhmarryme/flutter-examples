@@ -1,31 +1,31 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/responsive/responsive_helper.dart'
-    as responsive;
-import 'package:test_in_action/app/routes/app_pages.dart';
-import 'package:test_in_action/common/constants/AppTheme.dart';
-import 'package:test_in_action/config/dependency_injection.dart';
+import 'package:test_in_action/app/components/responsive/responsive_helper.dart';
+import 'package:test_in_action/app/routes/go_router_configuration.dart';
+import 'package:test_in_action/common/builder/app_theme_builder.dart';
+import 'package:test_in_action/config/initializer.dart';
 import 'package:test_in_action/config/translations/localization_service.dart';
-import 'package:test_in_action/utils/MobileLikeScrollBehavior.dart';
+import 'package:test_in_action/utils/mobile_like_scroll_behavior.dart';
 
-import 'config/dio_config.dart';
-import 'config/easy_loading_config.dart';
-import 'services/auth/auth_service.dart';
 import 'services/global_service.dart';
 
 void main() async {
-  await DependencyInjection.init();
-
-  runApp(DevicePreview(
-    // enabled: kDebugMode && kIsWeb,
-    enabled: false,
-    builder: (context) => const MyApp(),
-  ));
-  initDio();
-  configEasyLoading();
+  await ScreenUtil.ensureScreenSize();
+  await beforeRunApp();
+  runApp(
+    DevicePreview(
+      enabled: kDebugMode && kIsWeb,
+      // enabled: false,
+      builder: (context) => const MyApp(),
+    ),
+  );
+  afterRunApp();
 }
 
 class MyApp extends StatefulWidget {
@@ -38,29 +38,48 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      scrollBehavior: const MobileLikeScrollBehavior(),
-      title: "Getx Template app",
-      useInheritedMediaQuery: true,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: GlobalService.to.loadTheme,
-      builder: (ctx, child) {
-        ScreenUtil.init(ctx, designSize: const Size(360, 690));
-        return FlutterEasyLoading(child: child);
-      },
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
-      locale: GlobalService.to.loadLocale,
-      translations: LocalizationService.getInstance(),
-      binds: [Bind.put(AuthService())],
+    final designSize = getValueForScreenType(
+      context: context,
+      mobile: const Size(1620, 740),
+      tablet: const Size(800, 1280),
+      desktop: const Size(360, 690),
+    );
+    return ScreenUtilInit(
+      // designSize: designSize,
+      ensureScreenSize: true,
+      child: GetMaterialApp.router(
+        title: "Flutter test in action",
+        scrollBehavior: const MobileLikeScrollBehavior(),
+        useInheritedMediaQuery: true,
+        debugShowCheckedModeBanner: false,
+        theme: AppThemeBuilder.light,
+        darkTheme: AppThemeBuilder.dark,
+        themeMode: GlobalService.to.loadTheme,
+        builder: (context, child) {
+          final easyLoad = EasyLoading.init();
+          child = easyLoad(context, child);
+          return child;
+        },
+        locale: GlobalService.to.loadLocale,
+        translations: LocalizationService.getInstance(),
+        supportedLocales: LocalizationService.supportedLocales,
+        localizationsDelegates: const [
+          FormBuilderLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        routerDelegate: goRouter.routerDelegate,
+        routeInformationParser: goRouter.routeInformationParser,
+        routeInformationProvider: goRouter.routeInformationProvider,
+        // backButtonDispatcher: goRouter.backButtonDispatcher,
+      ),
     );
   }
 
   @override
   void initState() {
-    print('--------initState');
+    // print('--------initState');
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
@@ -68,23 +87,23 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     super.dispose();
-    print('--------dispose');
+    // print('--------dispose');
     WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
   void didChangeMetrics() {
-    if (responsive.isDesktop(context)) {
-      ScreenUtil.init(context, designSize: const Size(1620, 740));
-      print('--------change to Desktop');
-    } else if (responsive.isTablet(context)) {
-      ScreenUtil.init(context, designSize: const Size(800, 1280));
-      print('--------change to Tablet');
-    } else {
-      ScreenUtil.init(context);
-      print('--------change to Mobile');
-    }
-    print('--------didChangeMetrics');
+    // if (responsive.isDesktop(context)) {
+    //   ScreenUtil.init(context, designSize: const Size(1620, 740));
+    //   // print('--------change to Desktop');
+    // } else if (responsive.isTablet(context)) {
+    //   ScreenUtil.init(context, designSize: const Size(800, 1280));
+    //   // print('--------change to Tablet');
+    // } else {
+    //   ScreenUtil.init(context);
+    //   // print('--------change to Mobile');
+    // }
+    // print('--------didChangeMetrics');
     super.didChangeMetrics();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math' as math show pi;
+
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sidebar ui',
       home: Scaffold(
-        appBar: AppBar(),
         body: SidebarPage(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -211,40 +212,38 @@ class _SidebarPageState extends State<SidebarPage> {
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: CollapsibleSidebar(
-        isCollapsed: false,
+        isCollapsed: MediaQuery.of(context).size.width <= 800,
         items: _items,
         collapseOnBodyTap: false,
-        showToggleButton: false,
+        iconSize: 30,
         avatarImg: _avatarImg,
-        minWidth: 240,
-        maxWidth: 250,
         title: 'John Smith',
         onTitleTap: () {
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Yay! Flutter Collapsible Sidebar!')));
         },
         body: _body(size, context),
-        // backgroundColor: Colors.t,
+        backgroundColor: Colors.black,
         selectedTextColor: Colors.limeAccent,
-        textStyle: TextStyle(fontSize: 15, fontStyle: FontStyle.italic),
+        textStyle: TextStyle(fontSize: 10, fontStyle: FontStyle.italic),
         titleStyle: TextStyle(
-            fontSize: 20,
+            fontSize: 15,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.bold),
         toggleTitleStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         sidebarBoxShadow: [
-          // BoxShadow(
-          //   color: Colors.indigo,
-          //   blurRadius: 20,
-          //   spreadRadius: 0.01,
-          //   offset: Offset(3, 3),
-          // ),
-          // BoxShadow(
-          //   color: Colors.green,
-          //   blurRadius: 50,
-          //   spreadRadius: 0.01,
-          //   offset: Offset(3, 3),
-          // ),
+          BoxShadow(
+            color: Colors.indigo,
+            blurRadius: 20,
+            spreadRadius: 0.01,
+            offset: Offset(3, 3),
+          ),
+          BoxShadow(
+            color: Colors.green,
+            blurRadius: 50,
+            spreadRadius: 0.01,
+            offset: Offset(3, 3),
+          ),
         ],
       ),
     );
@@ -254,8 +253,21 @@ class _SidebarPageState extends State<SidebarPage> {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: BoxDecoration(color: Colors.black),
-      color: Colors.redAccent[50],
+      color: Colors.blueGrey[50],
+      child: Center(
+        child: Transform.rotate(
+          angle: math.pi / 2,
+          child: Transform.translate(
+            offset: Offset(-size.height * 0.3, -size.width * 0.23),
+            child: Text(
+              _headline,
+              style: Theme.of(context).textTheme.displayLarge,
+              overflow: TextOverflow.visible,
+              softWrap: false,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

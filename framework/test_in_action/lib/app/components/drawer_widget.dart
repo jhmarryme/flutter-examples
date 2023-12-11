@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/routes/app_pages.dart';
-import 'package:test_in_action/services/auth/auth_service.dart';
+import 'package:test_in_action/app/routes/backup/app_pages.dart';
+import 'package:test_in_action/services/auth_service.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -16,21 +16,39 @@ class DrawerWidget extends StatelessWidget {
             color: Colors.red,
           ),
           ListTile(
-            title: const Text('Home'),
+            title: const Text('To DataTable2 View'),
             onTap: () {
-              Get.toNamed(Routes.home);
+              Get.toNamed(Routes.dataTable);
               //to close the drawer
 
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
             },
           ),
           ListTile(
-            title: const Text('Settings'),
+            title: const Text('dataGrid'),
             onTap: () {
-              Get.toNamed(Routes.settings);
+              Get.offAndToNamed(Routes.dataGrid);
               //to close the drawer
 
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('formBuilder'),
+            onTap: () {
+              Get.offAndToNamed(Routes.formBuilder);
+              //to close the drawer
+
+              // Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('charts'),
+            onTap: () {
+              Get.offAndToNamed(Routes.charts);
+              //to close the drawer
+
+              // Navigator.of(context).pop();
             },
           ),
           if (AuthService.to.isLogin)

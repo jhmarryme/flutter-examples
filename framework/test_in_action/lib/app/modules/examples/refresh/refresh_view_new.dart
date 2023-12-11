@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/sample_get_page_logic.dart';
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/sample_get_page_view.dart';
+import 'package:test_in_action/app/components/get/get_save_state_view.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/refresh_on_start_page.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/skeleton_item.dart';
+import 'package:test_in_action/utils/log_utils.dart';
 
-class RefreshViewNew extends StatefulWidget {
+import 'refresh_controller.dart';
+
+class RefreshViewNew extends GetSaveView<RefreshController> {
   const RefreshViewNew({Key? key}) : super(key: key);
 
   @override
-  _RefreshViewNewState createState() => _RefreshViewNewState();
-}
-
-class _RefreshViewNewState extends State<RefreshViewNew>
-    with AutomaticKeepAliveClientMixin {
-  @override
   Widget build(BuildContext context) {
-    Get.put(SampleGetPageLogic<QuizEntity>());
-    super.build(context);
-    print("=====================");
-    return const SampleGetPageView();
+    /// 测试用
+    return RefreshOnStartPage<RefreshController>(
+      child: CustomScrollView(
+        controller: controller.scrollController,
+        slivers: [
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final data = controller.dataList[index];
+                LogUtil.d(data.toString());
+                return SkeletonItem(index: int.parse(data.id ?? '0'));
+              },
+              childCount: controller.dataList.length,
+            ),
+          ),
+        ],
+      ),
+    );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

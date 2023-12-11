@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/dao/quiz/quiz.dart';
-import 'package:test_in_action/services/auth/auth_service.dart';
+import 'package:test_in_action/services/auth_service.dart';
 
 import 'quiz_controller.dart';
 

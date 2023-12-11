@@ -9,6 +9,7 @@ class RequestHelper {
     Method method, {
     required String url,
     bool showLoading = true,
+    bool showError = true,
     NetSuccessCallback<T?>? onSuccess,
     NetErrorCallback? onError,
     dynamic params,
@@ -27,13 +28,14 @@ class RequestHelper {
       options: options,
       cancelToken: cancelToken,
       onSuccess: (data) {
+        TipsUtil.dismiss();
         if (showLoading) {
           TipsUtil.dismiss();
         }
         onSuccess?.call(data);
       },
       onError: (code, msg) {
-        _onError(code, msg, onError);
+        _onError(code, msg, showError, onError);
       },
     );
   }
@@ -43,6 +45,7 @@ class RequestHelper {
     Method method, {
     required String url,
     bool showLoading = true,
+    bool showError = true,
     PageNetSuccessCallback<T>? onSuccess,
     NetErrorCallback? onError,
     dynamic params,
@@ -50,6 +53,8 @@ class RequestHelper {
     CancelToken? cancelToken,
     Options? options,
   }) {
+    TipsUtil.dismiss();
+
     if (showLoading) {
       TipsUtil.showLoading();
     }
@@ -67,21 +72,28 @@ class RequestHelper {
         onSuccess?.call(data);
       },
       onError: (code, msg) {
-        _onError(code, msg, onError);
+        _onError(code, msg, showError, onError);
       },
     );
   }
 
-  static void _onError(int? code, String? msg, NetErrorCallback? onError) {
+  static void _onError(
+      int? code, String? msg, bool showError, NetErrorCallback? onError) {
     /// 异常时直接关闭加载圈，不受isClose影响
     TipsUtil.dismiss();
-    if (code != ExceptionHandle.cancel_error) {
-      TipsUtil.showToast(msg ?? 'unknown error');
+    if (showError) {
+      defaultShowErrorMsg(code, msg);
     }
 
     /// 页面如果dispose，则不回调onError
     if (onError != null) {
       onError(code, msg);
+    }
+  }
+
+  static void defaultShowErrorMsg(int? code, String? msg) {
+    if (code != ExceptionHandle.cancel_error) {
+      TipsUtil.showToast(msg ?? 'unknown error');
     }
   }
 }

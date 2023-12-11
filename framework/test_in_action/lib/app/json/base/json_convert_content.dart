@@ -6,9 +6,12 @@
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/request_body_entity.dart';
-import 'package:test_in_action/common/foo/test_user_entity.dart';
 import 'package:test_in_action/common/http/model/order_item_entity.dart';
+import 'package:test_in_action/models/auth/login_request_entity.dart';
+import 'package:test_in_action/models/auth/login_result_entity.dart';
 import 'package:test_in_action/models/auth/token_entity.dart';
+import 'package:test_in_action/models/foo/foo_user_entity.dart';
+import 'package:test_in_action/models/http/page_request_entity.dart';
 
 JsonConvert jsonConvert = JsonConvert();
 
@@ -125,7 +128,7 @@ class JsonConvert {
         if (value == null) {
           return null;
         }
-        return convertFuncMap[type]!(Map<String, dynamic>.from(value)) as T;
+        return convertFuncMap[type]!(value as Map<String, dynamic>) as T;
       } else {
         throw UnimplementedError(
             '$type unimplemented,you can try running the app again');
@@ -151,16 +154,22 @@ class JsonConvert {
               (Map<String, dynamic> e) => RequestBodyEntity.fromJson(e))
           .toList() as M;
     }
-    if (<TestUserEntity>[] is M) {
-      return data
-          .map<TestUserEntity>(
-              (Map<String, dynamic> e) => TestUserEntity.fromJson(e))
-          .toList() as M;
-    }
     if (<OrderItemEntity>[] is M) {
       return data
           .map<OrderItemEntity>(
               (Map<String, dynamic> e) => OrderItemEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<LoginRequestEntity>[] is M) {
+      return data
+          .map<LoginRequestEntity>(
+              (Map<String, dynamic> e) => LoginRequestEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<LoginResultEntity>[] is M) {
+      return data
+          .map<LoginResultEntity>(
+              (Map<String, dynamic> e) => LoginResultEntity.fromJson(e))
           .toList() as M;
     }
     if (<TokenEntity>[] is M) {
@@ -168,8 +177,20 @@ class JsonConvert {
           .map<TokenEntity>((Map<String, dynamic> e) => TokenEntity.fromJson(e))
           .toList() as M;
     }
+    if (<FooUserEntity>[] is M) {
+      return data
+          .map<FooUserEntity>(
+              (Map<String, dynamic> e) => FooUserEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<PageRequestEntity>[] is M) {
+      return data
+          .map<PageRequestEntity>(
+              (Map<String, dynamic> e) => PageRequestEntity.fromJson(e))
+          .toList() as M;
+    }
 
-    debugPrint("${M.toString()} not found");
+    debugPrint("$M not found");
 
     return null;
   }
@@ -180,7 +201,7 @@ class JsonConvert {
     }
     if (json is List) {
       return _getListChildType<M>(
-          json.map((e) => e as Map<String, dynamic>).toList());
+          json.map((dynamic e) => e as Map<String, dynamic>).toList());
     } else {
       return jsonConvert.convert<M>(json);
     }
@@ -192,9 +213,12 @@ class JsonConvertClassCollection {
     (QuizEntity).toString(): QuizEntity.fromJson,
     (QuizOptions).toString(): QuizOptions.fromJson,
     (RequestBodyEntity).toString(): RequestBodyEntity.fromJson,
-    (TestUserEntity).toString(): TestUserEntity.fromJson,
     (OrderItemEntity).toString(): OrderItemEntity.fromJson,
+    (LoginRequestEntity).toString(): LoginRequestEntity.fromJson,
+    (LoginResultEntity).toString(): LoginResultEntity.fromJson,
     (TokenEntity).toString(): TokenEntity.fromJson,
+    (FooUserEntity).toString(): FooUserEntity.fromJson,
+    (PageRequestEntity).toString(): PageRequestEntity.fromJson,
   };
 
   bool containsKey(String type) {

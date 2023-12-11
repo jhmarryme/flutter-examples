@@ -6,7 +6,7 @@ import 'package:test_in_action/app/modules/home/dashboard/dashboard_view.dart';
 import 'package:test_in_action/app/modules/home/index/home_logic.dart';
 import 'package:test_in_action/app/modules/home/quiz/quiz_view.dart';
 import 'package:test_in_action/app/modules/home/settings/settings_view.dart';
-import 'package:test_in_action/common/styles/sidebarx_style.dart';
+import 'package:test_in_action/common/builder/sidebarx_style_builder.dart';
 
 /// 主页
 /// 适配页面保活
@@ -42,8 +42,8 @@ class _HomeViewLargeRawState extends State<HomeViewLargeRaw> {
       children: [
         SidebarX(
           controller: _sidebarxController,
-          theme: SidebarxStyle.theme(),
-          extendedTheme: SidebarxStyle.extendedTheme(),
+          theme: SidebarxStyleBuilder.theme(),
+          extendedTheme: SidebarxStyleBuilder.extendedTheme(),
           footerDivider: Column(
             children: [
               ElevatedButton(
@@ -52,7 +52,7 @@ class _HomeViewLargeRawState extends State<HomeViewLargeRaw> {
               Divider(color: white.withOpacity(0.3), height: 1),
             ],
           ),
-          headerBuilder: (context, extended) => SidebarxStyle.header(),
+          headerBuilder: (context, extended) => SidebarxStyleBuilder.header(),
           items: [
             SidebarXItem(
                 icon: Icons.home, label: 'page0', onTap: () => jumpPage(0)),

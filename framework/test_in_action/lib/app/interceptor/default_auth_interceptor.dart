@@ -1,6 +1,5 @@
-import 'package:test_in_action/services/auth/auth_service.dart';
-
-import '../../common/http/interceptor/auth_interceptor.dart';
+import 'package:test_in_action/common/http/http.dart';
+import 'package:test_in_action/services/auth_service.dart';
 
 class DefaultAuthInterceptor extends AuthInterceptor {
   @override

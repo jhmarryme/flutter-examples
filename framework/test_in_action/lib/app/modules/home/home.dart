@@ -1,5 +1,4 @@
-export 'dashboard/dashboard_binding.dart';
-export 'dashboard/dashboard_controller.dart';
+export 'dashboard/dashboard_logic.dart';
 export 'dashboard/dashboard_view.dart';
 export 'index/home_binding.dart';
 export 'index/home_logic.dart';

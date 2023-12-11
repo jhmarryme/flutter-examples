@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../login_logic.dart';
-import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
 
-class LoginViewSmall extends GetView<LoginLogic> {
+class LoginViewSmall extends GetView<LoginLogicBack> {
   const LoginViewSmall({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +17,7 @@ class LoginViewSmall extends GetView<LoginLogic> {
         Row(
           children: [
             Spacer(),
-            Expanded(flex: 8, child: LoginForm()),
+            Expanded(flex: 8, child: LoginFormBack()),
             Spacer(),
           ],
         ),

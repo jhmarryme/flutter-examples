@@ -125,6 +125,7 @@ class DioUtils {
       cancelToken: cancelToken,
     );
     try {
+      await Future.delayed(const Duration(seconds: 1));
       return ApiPageResponseEntity<T>.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
@@ -156,6 +157,7 @@ class DioUtils {
       } else {
         _onError(result.code, result.msg, onError);
       }
+      return result.data;
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
@@ -186,6 +188,7 @@ class DioUtils {
       } else {
         _onError(result.code, result.msg, onError);
       }
+      return result.data;
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);

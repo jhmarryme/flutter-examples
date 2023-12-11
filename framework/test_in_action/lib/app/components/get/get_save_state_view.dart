@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:test_in_action/utils/log_utils.dart';
 
 /// @description :可持久化保存GetxController状态的Widget基类,用于绑定Controller
 /// 由于在TabBarView中切换页面会导致状态重置，从而GetxController销毁
@@ -25,6 +26,9 @@ abstract class GetSaveView<P extends GetxController> extends StatefulWidget {
 
   @override
   AutoDisposeState createState() => AutoDisposeState<P>();
+
+  @protected
+  void beforeBuild();
 }
 
 /// @description :基类,可自动装载的状态管理
@@ -34,10 +38,12 @@ class AutoDisposeState<S extends GetxController> extends State<GetSaveView>
 
   @override
   Widget build(BuildContext context) {
-    print(S.toString());
+    widget.beforeBuild();
+    LogUtil.d(S.toString());
     super.build(context);
     return GetBuilder<S>(
         id: widget.updateId,
+        tag: widget.tag,
         builder: (controller) {
           return widget.build(context);
         });
