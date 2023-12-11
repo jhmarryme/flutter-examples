@@ -48,9 +48,7 @@ class _PredefinedTextFieldState extends State<PredefinedTextField> {
       name: widget.name,
       decoration: widget.decoration ??
           InputDecoration(
-            labelText: widget.labelText,
-            suffixIcon: suffixIcon(),
-          ),
+              labelText: widget.labelText, suffixIcon: suffixIcon()),
       onTap: () {
         setState(() {
           _showCompleteButton = false;

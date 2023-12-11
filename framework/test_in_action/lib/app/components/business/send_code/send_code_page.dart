@@ -2,27 +2,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/form_builder/predefined/predefined.dart';
-import 'package:test_in_action/app/components/get/get_builder_view.dart';
-import 'package:test_in_action/app/modules/profile/profile_setting/my_email/my_email_logic.dart';
 import 'package:test_in_action/common/constants/colors.dart';
-import 'package:test_in_action/utils/log_utils.dart';
 
-class MyEmailView extends GetBuilderView<MyEmailLogic> {
-  const MyEmailView({Key? key}) : super(key: key);
+import 'send_code_logic.dart';
 
-  @override
-  void beforeBuild() {
-    var logic = MyEmailLogic();
-    Get.lazyPut(() => logic);
-  }
+class SendCodePage<Logic extends SendCodeLogic> extends GetView<Logic> {
+  SendCodePage({Key? key}) : super(key: key);
 
   @override
-  Widget doBuild(BuildContext context) {
-    final formKey = GlobalKey<FormBuilderState>();
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
@@ -44,34 +33,18 @@ class MyEmailView extends GetBuilderView<MyEmailLogic> {
                   margin:
                       EdgeInsets.only(top: 1.sh * 0.05, bottom: 1.sh * 0.05),
                   child: FormBuilder(
-                    key: formKey,
+                    key: controller.formKey,
                     onChanged: () {
-                      formKey.currentState!.save();
-                      LogUtil.d('${formKey.currentState?.value.toString()}');
+                      controller.formKey.currentState!.save();
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        PredefinedTextField(
-                          formKey: formKey,
-                          name: "Email",
-                          labelText: "Email",
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                            FormBuilderValidators.email()
-                          ]),
-                        )
-                      ],
+                      children: [...controller.children],
                     ),
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () async {
-                    if (formKey.currentState?.saveAndValidate() ?? false) {
-                      await controller.goToOtpView(
-                          formKey.currentState?.fields['Email']?.value);
-                    }
-                  },
+                  onPressed: () => controller.onSubmit(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Get.theme.primaryColor,
                     shape: RoundedRectangleBorder(

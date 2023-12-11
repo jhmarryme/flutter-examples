@@ -24,7 +24,10 @@ class ProfileSettingView extends StatelessWidget {
             ProfileListTile(
               leadingIcon: FontAwesomeIcons.phone,
               title: "LinkPhoneNumber",
-              onTap: () {},
+              onTap: () {
+                GoRouterNavigationHelper.pushNamedWithContext(
+                    context, ProfileRouterDefine.profileSettingPhone.name);
+              },
             ),
             ProfileListTile(
               leadingIcon: FontAwesomeIcons.solidCreditCard,

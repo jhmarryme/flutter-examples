@@ -124,4 +124,9 @@ abstract class ProfileRouterDefine {
     path: 'profileSettingEmail',
     route: "${_routePrefix}profileSettingEmail",
   );
+  static RouterInfo profileSettingPhone = const RouterInfo(
+    name: "${_namePrefix}profileSettingPhone",
+    path: 'profileSettingPhone',
+    route: "${_routePrefix}profileSettingPhone",
+  );
 }

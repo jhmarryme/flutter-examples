@@ -27,7 +27,7 @@ class RootViewLarge extends GetView<RootLogic> {
             footerDivider: Column(
               children: [
                 ElevatedButton(
-                    onPressed: () => controller.logout(),
+                    onPressed: () => controller.doLogout(context),
                     child: Icon(Icons.exit_to_app)),
                 Divider(color: white.withOpacity(0.3), height: 1),
               ],
