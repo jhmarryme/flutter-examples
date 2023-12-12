@@ -169,3 +169,8 @@ class StringStyles {
 
   static const String notSupportLikes = "notSupportLikes";
 }
+
+class SearchHomeStrings {
+
+  static const String travelTheWorldMadeSimple = "travelTheWorldMadeSimple";
+}

@@ -17,6 +17,8 @@ import 'package:test_in_action/app/routes/router_define.dart';
 import 'package:test_in_action/services/auth_service.dart';
 import 'package:test_in_action/utils/log_utils.dart';
 
+import '../modules/search/search.dart';
+
 part 'parts/go_router_navigator_key.dart';
 part 'parts/go_router_observer.dart';
 part 'parts/go_router_redirect.dart';
@@ -91,15 +93,21 @@ final goRouter = GoRouter(
                 ]),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              name: RouterDefine.search.name,
-              path: RouterDefine.search.path,
-              builder: (context, state) => const SearchView(),
-            ),
-          ],
-        ),
+        StatefulShellBranch(routes: [
+          ShellRoute(
+            navigatorKey: _searchSectionNavigatorKey,
+            builder: (context, state, child) => SearchView(child: child),
+            routes: [
+              GoRoute(
+                name: RouterDefine.search.name,
+                path: RouterDefine.search.path,
+                builder: (context, state) =>
+                    PlaceholderOrNotWidget(widget: SearchHomeView()),
+                routes: [],
+              ),
+            ],
+          )
+        ]),
         StatefulShellBranch(
           routes: [
             ShellRoute(

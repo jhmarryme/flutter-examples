@@ -43,3 +43,7 @@ const Map<String, String> enUsLanguage = {
   LanguageStrings.zhCn: 'Chinese',
   LanguageStrings.enUs: 'English',
 };
+
+const Map<String, String> enCnSearchHome = {
+  SearchHomeStrings.travelTheWorldMadeSimple: 'Travel the world made simple',
+};

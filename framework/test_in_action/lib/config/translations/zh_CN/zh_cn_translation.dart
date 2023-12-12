@@ -43,3 +43,7 @@ const Map<String, String> zhCnLanguage = {
   LanguageStrings.zhCn: '中文',
   LanguageStrings.enUs: '英语',
 };
+
+const Map<String, String> zhCnSearchHome = {
+  SearchHomeStrings.travelTheWorldMadeSimple: '让环游世界变得更加简单',
+};

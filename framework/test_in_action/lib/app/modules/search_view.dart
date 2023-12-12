@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class SearchView extends StatelessWidget {
-  const SearchView({Key? key}) : super(key: key);
+class SearchViewOld extends StatelessWidget {
+  const SearchViewOld({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

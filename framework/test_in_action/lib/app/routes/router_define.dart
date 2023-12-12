@@ -130,3 +130,13 @@ abstract class ProfileRouterDefine {
     route: "${_routePrefix}profileSettingPhone",
   );
 }
+
+abstract class SearchRouteDefine {
+  static const String _routePrefix = "/search/";
+  static const String _namePrefix = "search-";
+  static RouterInfo blank = const RouterInfo(
+    name: "${_namePrefix}blank",
+    path: 'blank',
+    route: "${_routePrefix}blank",
+  );
+}

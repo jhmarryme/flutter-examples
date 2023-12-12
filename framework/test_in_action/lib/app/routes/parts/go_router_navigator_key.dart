@@ -5,6 +5,8 @@ final GlobalKey<NavigatorState>? _homeSectionNavigatorKey =
     Get.nestedKey("sectionANav");
 final GlobalKey<NavigatorState>? _profileSectionNavigatorKey =
     Get.nestedKey("profileSectionNav");
+final GlobalKey<NavigatorState>? _searchSectionNavigatorKey =
+    Get.nestedKey("searchSectionNav");
 
 // final GlobalKey<NavigatorState> _rootNavigatorKey =
 //     GlobalKey<NavigatorState>(debugLabel: 'root');

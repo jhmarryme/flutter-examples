@@ -40,8 +40,8 @@ class LocalizationService extends Translations {
 
   @override
   Map<String, Map<String, String>> get keys => {
-        'en_US': {...enUs, ...enUsTheme, ...enUsLanguage},
-        'zh_CN': {...zhCn, ...zhCnTheme, ...zhCnLanguage},
+        'en_US': {...enUs, ...enUsTheme, ...enUsLanguage, ...enCnSearchHome},
+        'zh_CN': {...zhCn, ...zhCnTheme, ...zhCnLanguage, ...zhCnSearchHome},
       };
 
   /// check if the language is supported
