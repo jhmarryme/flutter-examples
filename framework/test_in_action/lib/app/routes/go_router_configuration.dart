@@ -36,6 +36,7 @@ final goRouter = GoRouter(
       name: RouterDefine.welcome.name,
       path: RouterDefine.welcome.path,
       builder: (context, state) => const IntroduceView(),
+      parentNavigatorKey: _rootNavigatorKey,
       routes: [
         GoRoute(
           name: WelcomeRouterDefine.login.name,
