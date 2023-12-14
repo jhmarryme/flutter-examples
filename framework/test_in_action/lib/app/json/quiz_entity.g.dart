@@ -1,5 +1,5 @@
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 import 'package:test_in_action/app/json/base/json_convert_content.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 
 QuizEntity $QuizEntityFromJson(Map<String, dynamic> json) {
   final QuizEntity quizEntity = QuizEntity();
@@ -27,9 +27,8 @@ QuizEntity $QuizEntityFromJson(Map<String, dynamic> json) {
   if (answer != null) {
     quizEntity.answer = answer;
   }
-  final List<QuizOptions>? options = (json['options'] as List<dynamic>?)
-      ?.map((e) => jsonConvert.convert<QuizOptions>(e) as QuizOptions)
-      .toList();
+  final List<QuizOptions>? options = (json['options'] as List<dynamic>?)?.map(
+          (e) => jsonConvert.convert<QuizOptions>(e) as QuizOptions).toList();
   if (options != null) {
     quizEntity.options = options;
   }

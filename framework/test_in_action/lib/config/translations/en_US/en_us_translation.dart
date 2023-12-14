@@ -46,4 +46,5 @@ const Map<String, String> enUsLanguage = {
 
 const Map<String, String> enCnSearchHome = {
   SearchHomeStrings.travelTheWorldMadeSimple: 'Travel the world made simple',
+  SearchHomeStrings.whereYouToGo: 'Where you to go?',
 };

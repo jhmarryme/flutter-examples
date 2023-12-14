@@ -171,6 +171,6 @@ class StringStyles {
 }
 
 class SearchHomeStrings {
-
   static const String travelTheWorldMadeSimple = "travelTheWorldMadeSimple";
+  static const String whereYouToGo = "Where you to go?";
 }

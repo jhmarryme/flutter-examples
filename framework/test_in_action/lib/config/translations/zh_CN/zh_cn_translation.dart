@@ -46,4 +46,5 @@ const Map<String, String> zhCnLanguage = {
 
 const Map<String, String> zhCnSearchHome = {
   SearchHomeStrings.travelTheWorldMadeSimple: '让环游世界变得更加简单',
+  SearchHomeStrings.whereYouToGo: 'Where you to go?',
 };

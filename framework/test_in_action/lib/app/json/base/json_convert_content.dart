@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/request_body_entity.dart';
+import 'package:test_in_action/app/dao/search/city_entity.dart';
 import 'package:test_in_action/common/http/model/order_item_entity.dart';
 import 'package:test_in_action/models/auth/login_request_entity.dart';
 import 'package:test_in_action/models/auth/login_result_entity.dart';
@@ -154,6 +155,11 @@ class JsonConvert {
               (Map<String, dynamic> e) => RequestBodyEntity.fromJson(e))
           .toList() as M;
     }
+    if (<CityEntity>[] is M) {
+      return data
+          .map<CityEntity>((Map<String, dynamic> e) => CityEntity.fromJson(e))
+          .toList() as M;
+    }
     if (<OrderItemEntity>[] is M) {
       return data
           .map<OrderItemEntity>(
@@ -213,6 +219,7 @@ class JsonConvertClassCollection {
     (QuizEntity).toString(): QuizEntity.fromJson,
     (QuizOptions).toString(): QuizOptions.fromJson,
     (RequestBodyEntity).toString(): RequestBodyEntity.fromJson,
+    (CityEntity).toString(): CityEntity.fromJson,
     (OrderItemEntity).toString(): OrderItemEntity.fromJson,
     (LoginRequestEntity).toString(): LoginRequestEntity.fromJson,
     (LoginResultEntity).toString(): LoginResultEntity.fromJson,
