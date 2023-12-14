@@ -32,4 +32,19 @@ class CalenderHelper {
 
     return valueText;
   }
+
+  static String getRangeDateWithSeparator(
+    List<DateTime?> values, {
+    String separator = "-",
+  }) {
+    values =
+        values.map((e) => e != null ? DateUtils.dateOnly(e) : null).toList();
+    final startDate = values[0].toString().replaceAll('00:00:00.000', '');
+    final endDate = values.length > 1
+        ? values[1].toString().replaceAll('00:00:00.000', '')
+        : '';
+    return '$startDate $separator $endDate';
+  }
+
+
 }

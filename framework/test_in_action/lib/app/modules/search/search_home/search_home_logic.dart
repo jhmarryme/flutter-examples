@@ -19,25 +19,26 @@ class SearchHomeLogic extends GetxController {
   ChooseCityInputLogic get toCityLogic =>
       Get.find<ChooseCityInputLogic>(tag: state.toCityLogicTag);
 
-  void swapCity() {
-    bool chosen = fromCityLogic.chosen.value;
-    final cityJson = fromCityLogic.cityEntity.value.toJson();
-
-    fromCityLogic.chosen.value = toCityLogic.chosen.value;
-    fromCityLogic.updateCity(toCityLogic.cityEntity.value);
-
-    toCityLogic.chosen.value = chosen;
-    toCityLogic.updateCity(CityEntity.fromJson(cityJson));
+  /// 初始化日期选择器, 由于要用到context, 需要手动调动
+  void initializeDatePicker(BuildContext context) {
+    state.datePickerState ??= CalendarDialogButtonState(context);
   }
 
+  /// 初始化下属logic
   void initializeCityChooseLogic() {
     Get.put(ChooseCityInputLogic(), tag: state.fromCityLogicTag);
     Get.put(ChooseCityInputLogic(), tag: state.toCityLogicTag);
   }
 
-  late final int myNumber;
+  /// 交换from/to 选择器的值
+  void swapCity() {
+    bool tempChosen = fromCityLogic.chosen.value;
+    final tempCityJson = fromCityLogic.cityEntity.value.toJson();
 
-  void initializeDatePicker(BuildContext context) {
-    state.datePickerState ??= CalendarDialogButtonState(context);
+    fromCityLogic.chosen.value = toCityLogic.chosen.value;
+    fromCityLogic.updateCity(toCityLogic.cityEntity.value);
+
+    toCityLogic.chosen.value = tempChosen;
+    toCityLogic.updateCity(CityEntity.fromJson(tempCityJson));
   }
 }

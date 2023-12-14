@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/business/otp/verify_type.dart';
+
+enum VerifyType {
+  phone,
+  email,
+}
 
 abstract class OtpLogic extends GetxController {
   VerifyType verifyType = VerifyType.phone;
