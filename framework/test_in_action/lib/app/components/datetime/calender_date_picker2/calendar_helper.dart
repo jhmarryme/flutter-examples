@@ -45,6 +45,4 @@ class CalenderHelper {
         : '';
     return '$startDate $separator $endDate';
   }
-
-
 }

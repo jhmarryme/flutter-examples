@@ -4,25 +4,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:test_in_action/app/components/datetime/calender_date_picker2/dialog_button/dialog_button_helper.dart';
-import 'package:test_in_action/app/components/get/get_builder_view.dart';
-import 'package:test_in_action/app/components/search/search_modal_bootm_sheet/choose_city_input_view.dart';
+import 'package:test_in_action/app/components/business/search/choose_city_text_inkwell/choose_city_text_inkwell.dart';
+import 'package:test_in_action/app/components/datetime/calender_date_picker2/date_picker_button/date_picker_dialog_button.dart';
 import 'package:test_in_action/app/modules/search/choose_type/choose_type_view.dart';
 import 'package:test_in_action/common/constants/colors.dart';
 import 'package:test_in_action/config/translations/strings_enum.dart';
 
 import 'search_home_logic.dart';
 
-class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
+class SearchHomeView extends StatefulWidget {
   const SearchHomeView({super.key});
 
   @override
-  void beforeBuild() {
-    Get.put(SearchHomeLogic());
+  State<SearchHomeView> createState() => _SearchHomeViewState();
+}
+
+class _SearchHomeViewState extends State<SearchHomeView>
+    with TickerProviderStateMixin {
+  final controller = SearchHomeLogic();
+
+  late Animation _arrowAnimation;
+  late AnimationController _arrowAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _arrowAnimationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _arrowAnimation =
+        Tween(begin: 0.0, end: pi).animate(_arrowAnimationController);
   }
 
   @override
-  Widget doBuild(BuildContext context) {
+  Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
         body: Container(
@@ -57,10 +71,7 @@ class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
                         color: const Color.fromRGBO(112, 112, 112, 0.0),
                         child: ChooseTypeComponent(
                             state: controller.state.chooseTypeState)),
-                    Container(
-                        color: const Color.fromRGBO(112, 112, 112, 0.0),
-                        child: ChooseTypeComponent(
-                            state: controller.state.chooseTypeState)),
+                    Container(),
                   ],
                 ),
               )
@@ -72,8 +83,6 @@ class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
   }
 
   Container searchFlight(BuildContext context) {
-    controller.initializeDatePicker(context);
-
     return Container(
       padding: EdgeInsets.all(15.spMin),
       decoration: BoxDecoration(
@@ -91,22 +100,19 @@ class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
                 //Tim dia diem
                 Row(
                   children: <Widget>[
-                    Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          const Icon(FontAwesomeIcons.locationDot,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        const Icon(FontAwesomeIcons.locationDot,
+                            color: ColorStyle.kGrey400),
+                        const Image(image: AssetImage('assets/icons/Line.png')),
+                        Transform.rotate(
+                          angle: pi / 2,
+                          child: const Icon(Icons.flight,
                               color: ColorStyle.kGrey400),
-                          const Image(
-                              image: AssetImage('assets/icons/Line.png')),
-                          Transform.rotate(
-                            angle: pi / 2,
-                            child: const Icon(Icons.flight,
-                                color: ColorStyle.kGrey400),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 10.spMin),
@@ -116,16 +122,14 @@ class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
                         children: <Widget>[
                           SizedBox(
                             height: 1.sh * 0.03,
-                            child: ChooseCityInputComponent(
-                              logicTag: controller.state.fromCityLogicTag,
-                            ),
+                            child: ChooseCityTextInkWell(
+                                state: controller.state.fromCityState),
                           ),
                           Expanded(child: Container()),
                           SizedBox(
                             height: 1.sh * 0.03,
-                            child: ChooseCityInputComponent(
-                              logicTag: controller.state.toCityLogicTag,
-                            ),
+                            child: ChooseCityTextInkWell(
+                                state: controller.state.toCityState),
                           ),
                         ],
                       ),
@@ -135,15 +139,25 @@ class SearchHomeView extends GetBuilderView<SearchHomeLogic> {
 
                 // icon doi vi tri
                 InkWell(
-                  child: Icon(Icons.autorenew_rounded,
-                      color: ColorStyle.kBlue, size: 30.spMin),
-                  onTap: () => controller.swapCity(),
+                  child: AnimatedBuilder(
+                    animation: _arrowAnimation,
+                    builder: (context, child) => Transform.rotate(
+                      angle: _arrowAnimation.value,
+                      child: Icon(Icons.autorenew_rounded,
+                          color: ColorStyle.kBlue, size: 30.spMin),
+                    ),
+                  ),
+                  onTap: () {
+                    _arrowAnimationController.isCompleted
+                        ? _arrowAnimationController.reverse()
+                        : _arrowAnimationController.forward();
+                    controller.swapCity();
+                  },
                 ),
               ],
             ),
           ),
-          CalendarDialogButtonHelper.buildDefaultCalendarDialogButton(
-              context, controller.state.datePickerState!),
+          DatePickerButton(state: controller.state.datePickerState),
         ],
       ),
     );

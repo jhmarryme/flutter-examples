@@ -7,7 +7,7 @@ import 'package:test_in_action/utils/log_utils.dart';
 /// 再次切换时需要重新拉取所有信息，体验非常差，因此需要继承AutomaticKeepAliveClientMixin
 /// 来达到拦截状态销毁的目的
 abstract class GetSaveView<P extends GetxController> extends StatefulWidget {
-  const GetSaveView({Key? key}) : super(key: key);
+  const GetSaveView({super.key});
 
   final String? tag = null;
 
