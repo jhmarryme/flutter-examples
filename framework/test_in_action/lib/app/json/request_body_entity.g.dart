@@ -1,5 +1,5 @@
-import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/request_body_entity.dart';
 import 'package:test_in_action/app/json/base/json_convert_content.dart';
+import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/request_body_entity.dart';
 
 RequestBodyEntity $RequestBodyEntityFromJson(Map<String, dynamic> json) {
   final RequestBodyEntity requestBodyEntity = RequestBodyEntity();
@@ -20,6 +20,7 @@ extension RequestBodyEntityExtension on RequestBodyEntity {
   RequestBodyEntity copyWith({
     String? keyword,
   }) {
-    return RequestBodyEntity()..keyword = keyword ?? this.keyword;
+    return RequestBodyEntity()
+      ..keyword = keyword ?? this.keyword;
   }
 }

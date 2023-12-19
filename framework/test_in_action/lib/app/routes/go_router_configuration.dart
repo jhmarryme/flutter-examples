@@ -9,7 +9,6 @@ import 'package:test_in_action/app/modules/home/dashboard/dashboard_view.dart';
 import 'package:test_in_action/app/modules/home/home/dashboard_view.dart';
 import 'package:test_in_action/app/modules/profile/profile.dart';
 import 'package:test_in_action/app/modules/root/root_view.dart';
-import 'package:test_in_action/app/modules/search_view.dart';
 import 'package:test_in_action/app/modules/welcome/introduce/introduce.dart';
 import 'package:test_in_action/app/modules/welcome/otp_view/otp_verify_view.dart';
 import 'package:test_in_action/app/modules/welcome/welcome.dart';
@@ -103,7 +102,13 @@ final goRouter = GoRouter(
                 path: RouterDefine.search.path,
                 builder: (context, state) =>
                     PlaceholderOrNotWidget(widget: SearchHomeView()),
-                routes: [],
+                routes: [
+                  GoRoute(
+                    name: SearchRouteDefine.searchResult.name,
+                    path: SearchRouteDefine.searchResult.path,
+                    builder: (context, state) => const SearchResultView(),
+                  ),
+                ],
               ),
             ],
           )
