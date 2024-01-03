@@ -141,6 +141,12 @@ flutter:
     # 欢迎页
     - assets/images/introduce/
 
+    # mock
+    - assets/images/mock/
+    - assets/images/mock/carriers/
+    - assets/images/mock/image-empty/
+    - assets/images/mock/introduce/
+
     #Icons
     - assets/icons/
 

@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:test_in_action/app/components/business/search/choose_city_text_inkwell/choose_city_text_inkwell.dart';
 import 'package:test_in_action/app/components/datetime/calender_date_picker2/date_picker_button/date_picker_dialog_button.dart';
 import 'package:test_in_action/app/modules/search/choose_type/choose_type_view.dart';
+import 'package:test_in_action/app/modules/search/search_result/flight_search_param.dart';
+import 'package:test_in_action/app/routes/parts/go_router_navigation_helper.dart';
 import 'package:test_in_action/common/constants/colors.dart';
 import 'package:test_in_action/config/translations/strings_enum.dart';
 
@@ -161,6 +163,17 @@ class _SearchHomeViewState extends State<SearchHomeView>
             ),
           ),
           DatePickerButton(state: controller.state.datePickerState),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              final extra = FlightSearchParam("123", "123");
+              GoRouterNavigationHelper.goNamedWithContext(
+                context,
+                SearchRouteDefine.searchResult.name,
+                extra: extra,
+              );
+            },
+          ),
         ],
       ),
     );

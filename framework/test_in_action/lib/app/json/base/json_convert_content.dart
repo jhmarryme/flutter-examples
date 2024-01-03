@@ -7,6 +7,7 @@ import 'package:flutter/material.dart' show debugPrint;
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/quiz_entity.dart';
 import 'package:test_in_action/app/components/my_refresh/my_easy_refresh/refresh_on_start/sample/request_body_entity.dart';
 import 'package:test_in_action/app/dao/search/city_entity.dart';
+import 'package:test_in_action/app/modules/search/search_result/fight_seach_response_entity.dart';
 import 'package:test_in_action/common/http/model/order_item_entity.dart';
 import 'package:test_in_action/models/auth/login_request_entity.dart';
 import 'package:test_in_action/models/auth/login_result_entity.dart';
@@ -160,6 +161,18 @@ class JsonConvert {
           .map<CityEntity>((Map<String, dynamic> e) => CityEntity.fromJson(e))
           .toList() as M;
     }
+    if (<FightSearchResponseEntity>[] is M) {
+      return data
+          .map<FightSearchResponseEntity>(
+              (Map<String, dynamic> e) => FightSearchResponseEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<FightSearchResponseFlightDetailList>[] is M) {
+      return data
+          .map<FightSearchResponseFlightDetailList>((Map<String, dynamic> e) =>
+              FightSearchResponseFlightDetailList.fromJson(e))
+          .toList() as M;
+    }
     if (<OrderItemEntity>[] is M) {
       return data
           .map<OrderItemEntity>(
@@ -220,6 +233,9 @@ class JsonConvertClassCollection {
     (QuizOptions).toString(): QuizOptions.fromJson,
     (RequestBodyEntity).toString(): RequestBodyEntity.fromJson,
     (CityEntity).toString(): CityEntity.fromJson,
+    (FightSearchResponseEntity).toString(): FightSearchResponseEntity.fromJson,
+    (FightSearchResponseFlightDetailList).toString():
+        FightSearchResponseFlightDetailList.fromJson,
     (OrderItemEntity).toString(): OrderItemEntity.fromJson,
     (LoginRequestEntity).toString(): LoginRequestEntity.fromJson,
     (LoginResultEntity).toString(): LoginResultEntity.fromJson,

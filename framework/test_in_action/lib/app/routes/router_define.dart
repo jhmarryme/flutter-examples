@@ -139,4 +139,9 @@ abstract class SearchRouteDefine {
     path: 'blank',
     route: "${_routePrefix}blank",
   );
+  static RouterInfo searchResult = const RouterInfo(
+    name: "${_namePrefix}searchResult",
+    path: 'searchResult',
+    route: "${_routePrefix}searchResult",
+  );
 }
