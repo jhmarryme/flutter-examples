@@ -29,8 +29,8 @@ class _SearchHomeViewState extends State<SearchHomeView>
   @override
   void initState() {
     super.initState();
-    _arrowAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _arrowAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
     _arrowAnimation =
         Tween(begin: 0.0, end: pi).animate(_arrowAnimationController);
   }
@@ -39,43 +39,46 @@ class _SearchHomeViewState extends State<SearchHomeView>
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
+        backgroundColor: ColorStyle.kGrey100,
         body: Container(
-          color: ColorStyle.kGrey100,
           padding: EdgeInsets.only(left: 10.spMin, right: 10.spMin),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 40),
-                alignment: Alignment.bottomLeft,
-                width: 230.spMin,
-                height: 1.sh * 0.2,
-                child: Text(
-                  SearchHomeStrings.travelTheWorldMadeSimple.tr,
-                  style:
-                      TextStyle(fontSize: 28.spMin, color: ColorStyle.kGrey600),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 40),
+                  alignment: Alignment.bottomLeft,
+                  width: 230.spMin,
+                  height: 1.sh * 0.2,
+                  child: Text(
+                    SearchHomeStrings.travelTheWorldMadeSimple.tr,
+                    style: TextStyle(
+                        fontSize: 28.spMin, color: ColorStyle.kGrey600),
+                  ),
                 ),
-              ),
-              searchFlight(context),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 1.sw * 0.02,
-                  right: 1.sw * 0.06,
-                  bottom: 20.spMin,
-                  top: 20.spMin,
+                searchFlight(context),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: 1.sw * 0.02,
+                    right: 1.sw * 0.06,
+                    bottom: 20.spMin,
+                    top: 20.spMin,
+                  ),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                          color: const Color.fromRGBO(112, 112, 112, 0.0),
+                          child: ChooseTypeComponent(
+                              state: controller.state.chooseTypeState)),
+                      // PickerButtonComponent(
+                      //     state: controller.state.pickerButtonState),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                        color: const Color.fromRGBO(112, 112, 112, 0.0),
-                        child: ChooseTypeComponent(
-                            state: controller.state.chooseTypeState)),
-                    Container(),
-                  ],
-                ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -101,36 +104,36 @@ class _SearchHomeViewState extends State<SearchHomeView>
                 Row(
                   children: <Widget>[
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Icon(FontAwesomeIcons.locationDot,
-                            color: ColorStyle.kGrey400),
-                        const Image(image: AssetImage('assets/icons/Line.png')),
+                        Icon(
+                          size: 20.spMin,
+                          FontAwesomeIcons.locationDot,
+                          color: ColorStyle.kGrey400,
+                        ),
+                        const Expanded(
+                          child: Image(
+                            image: AssetImage('assets/icons/Line.png'),
+                          ),
+                        ),
                         Transform.rotate(
                           angle: pi / 2,
-                          child: const Icon(Icons.flight,
-                              color: ColorStyle.kGrey400),
+                          child: Icon(
+                            size: 20.spMin,
+                            Icons.flight,
+                            color: ColorStyle.kGrey400,
+                          ),
                         ),
                       ],
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 10.spMin),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 1.sh * 0.03,
-                            child: ChooseCityTextInkWell(
-                                state: controller.state.fromCityState),
-                          ),
-                          Expanded(child: Container()),
-                          SizedBox(
-                            height: 1.sh * 0.03,
-                            child: ChooseCityTextInkWell(
-                                state: controller.state.toCityState),
-                          ),
+                        children: [
+                          ChooseCityTextInkWell(
+                              state: controller.state.fromCityState),
+                          Spacer(),
+                          ChooseCityTextInkWell(
+                              state: controller.state.toCityState),
                         ],
                       ),
                     ),

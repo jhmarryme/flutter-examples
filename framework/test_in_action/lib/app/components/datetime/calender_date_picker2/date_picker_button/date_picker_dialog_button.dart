@@ -28,9 +28,9 @@ class DatePickerButton<DatePickerState extends DataPickerDialogButtonState>
           state.savePickedValue(values);
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(15.spMin, 5.spMin, 15.spMin, 5.spMin),
+          padding: EdgeInsets.fromLTRB(12.spMin, 2.spMin, 12.spMin, 2.spMin),
           margin:
-              EdgeInsets.only(top: 15.spMin, left: 15.spMin, right: 15.spMin),
+              EdgeInsets.only(top: 12.spMin, left: 12.spMin, right: 12.spMin),
           decoration: BoxDecoration(
             color: ColorStyle.kGrey100,
             borderRadius: BorderRadiusDirectional.circular(10.0),
@@ -50,10 +50,11 @@ class DatePickerButton<DatePickerState extends DataPickerDialogButtonState>
                 replacement: Opacity(
                   opacity: 0,
                   child: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.clear)),
+                      onPressed: () {},
+                      icon: Icon(size: 20.spMin, Icons.clear)),
                 ),
                 child: IconButton(
-                  icon: const Icon(Icons.clear),
+                  icon: Icon(size: 20.spMin, Icons.clear),
                   onPressed: () => state.clearPickedValue(),
                 ),
               ),

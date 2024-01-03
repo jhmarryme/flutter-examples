@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/business/search/choose_city_text_inkwell/choose_city_text_inkwell_state.dart';
 import 'package:test_in_action/app/components/datetime/calender_date_picker2/date_picker_button/date_picker_dialog_button_state.dart';
+import 'package:test_in_action/app/components/picker/number_picker/default_number_picker_state.dart';
 import 'package:test_in_action/app/modules/search/choose_type/choose_type_state.dart';
+import 'package:test_in_action/app/modules/search/picker_button/picker_button_state.dart';
 
 class SearchHomeState {
   final firstDate = "".obs;
@@ -19,4 +21,6 @@ class SearchHomeState {
 
   /// 类型选择器state
   final ChooseTypeState chooseTypeState = ChooseTypeState();
+
+  final PickerButtonState pickerButtonState = PickerButtonState();
 }
