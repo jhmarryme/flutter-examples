@@ -108,6 +108,11 @@ abstract class ProfileRouterDefine {
     path: 'dataGridPaging',
     route: "${_routePrefix}dataGridPaging",
   );
+  static RouterInfo pdf = const RouterInfo(
+    name: "${_namePrefix}pdf",
+    path: 'pdf',
+    route: "${_routePrefix}pdf",
+  );
   static RouterInfo profileNew = const RouterInfo(
     name: "${_namePrefix}profileNew",
     path: 'profileNew',

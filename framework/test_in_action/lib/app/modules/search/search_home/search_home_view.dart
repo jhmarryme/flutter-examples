@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/business/search/choose_city_text_inkwell/choose_city_text_inkwell.dart';
 import 'package:test_in_action/app/components/datetime/calender_date_picker2/date_picker_button/date_picker_dialog_button.dart';
-import 'package:test_in_action/app/modules/search/choose_type/choose_type_view.dart';
+import 'package:test_in_action/app/modules/search/choose_item/choose_item_view.dart';
 import 'package:test_in_action/app/modules/search/search_result/flight_search_param.dart';
 import 'package:test_in_action/app/routes/parts/go_router_navigation_helper.dart';
 import 'package:test_in_action/common/constants/colors.dart';
@@ -41,46 +41,46 @@ class _SearchHomeViewState extends State<SearchHomeView>
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        backgroundColor: ColorStyle.kGrey100,
         body: Container(
+          color: ColorStyle.kGrey100,
           padding: EdgeInsets.only(left: 10.spMin, right: 10.spMin),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 40),
-                  alignment: Alignment.bottomLeft,
-                  width: 230.spMin,
-                  height: 1.sh * 0.2,
-                  child: Text(
-                    SearchHomeStrings.travelTheWorldMadeSimple.tr,
-                    style: TextStyle(
-                        fontSize: 28.spMin, color: ColorStyle.kGrey600),
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// 文字区域
+              Container(
+                margin: const EdgeInsets.only(bottom: 40),
+                alignment: Alignment.bottomLeft,
+                width: 230.spMin,
+                height: 1.sh * 0.2,
+                child: Text(
+                  SearchHomeStrings.travelTheWorldMadeSimple.tr,
+                  style:
+                      TextStyle(fontSize: 28.spMin, color: ColorStyle.kGrey600),
                 ),
-                searchFlight(context),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 1.sw * 0.02,
-                    right: 1.sw * 0.06,
-                    bottom: 20.spMin,
-                    top: 20.spMin,
-                  ),
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                          color: const Color.fromRGBO(112, 112, 112, 0.0),
-                          child: ChooseTypeComponent(
-                              state: controller.state.chooseTypeState)),
-                      // PickerButtonComponent(
-                      //     state: controller.state.pickerButtonState),
-                    ],
-                  ),
+              ),
+              searchFlight(context),
+              Container(
+                margin: EdgeInsets.only(
+                  left: 1.sw * 0.02,
+                  right: 1.sw * 0.06,
+                  bottom: 20.spMin,
+                  top: 20.spMin,
                 ),
-              ],
-            ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                        color: const Color.fromRGBO(112, 112, 112, 0.0),
+                        child: ChooseItemComponent(
+                          title: '请选择',
+                          state: controller.state.chooseTypeState,
+                        )),
+                    Container(),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -106,6 +106,8 @@ class _SearchHomeViewState extends State<SearchHomeView>
                 Row(
                   children: <Widget>[
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Icon(
                           size: 20.spMin,
@@ -130,12 +132,20 @@ class _SearchHomeViewState extends State<SearchHomeView>
                     Container(
                       margin: EdgeInsets.only(left: 10.spMin),
                       child: Column(
-                        children: [
-                          ChooseCityTextInkWell(
-                              state: controller.state.fromCityState),
-                          Spacer(),
-                          ChooseCityTextInkWell(
-                              state: controller.state.toCityState),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 1.sh * 0.03,
+                            child: ChooseCityTextInkWell(
+                                state: controller.state.fromCityState),
+                          ),
+                          Expanded(child: Container()),
+                          SizedBox(
+                            height: 1.sh * 0.03,
+                            child: ChooseCityTextInkWell(
+                                state: controller.state.toCityState),
+                          ),
                         ],
                       ),
                     ),

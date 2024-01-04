@@ -5,14 +5,13 @@ import 'package:test_in_action/services/service.dart';
 
 import 'dio_config.dart';
 import 'easy_loading_config.dart';
-import 'window_size_config.dart';
 
 /// runApp前需要完成的初始化操作
 Future<void> beforeRunApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init(DefaultStorageService.boxKey);
   await GetStorage.init(FooStorageService.boxKey);
-  await setWindowsSize();
+  // await setWindowsSize();
   Get.put(await DefaultStorageService().init());
   Get.put(await FooStorageService().init());
   Get.put(GlobalService());

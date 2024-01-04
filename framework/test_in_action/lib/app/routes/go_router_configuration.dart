@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_in_action/app/components/business/middle_pages/success_page.dart';
 import 'package:test_in_action/app/components/business/placeholder_or_not_widget.dart';
+import 'package:test_in_action/app/modules/examples/pdf/pdf.dart';
 import 'package:test_in_action/app/modules/home/dashboard/dashboard_view.dart';
 import 'package:test_in_action/app/modules/home/home/dashboard_view.dart';
 import 'package:test_in_action/app/modules/profile/profile.dart';
@@ -156,6 +157,11 @@ final goRouter = GoRouter(
                       path: ProfileRouterDefine.dataGridPaging.path,
                       builder: (context, state) =>
                           const FooDataGridPagingView(),
+                    ),
+                    GoRoute(
+                      name: ProfileRouterDefine.pdf.name,
+                      path: ProfileRouterDefine.pdf.path,
+                      builder: (context, state) => const PdfPreview(),
                     ),
                     GoRoute(
                       redirect: authRedirect,

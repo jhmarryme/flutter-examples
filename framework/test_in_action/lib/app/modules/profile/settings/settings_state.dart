@@ -43,5 +43,6 @@ class SettingsState {
     ProfileRouterDefine.dataGridPaging.name:
         ProfileRouterDefine.dataGridPaging.name,
     ProfileRouterDefine.profileNew.name: ProfileRouterDefine.profileNew.name,
+    ProfileRouterDefine.pdf.name: ProfileRouterDefine.pdf.name,
   };
 }

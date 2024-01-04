@@ -1,8 +1,8 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/app/components/business/search/choose_city_text_inkwell/choose_city_text_inkwell_state.dart';
 import 'package:test_in_action/app/components/datetime/calender_date_picker2/date_picker_button/date_picker_dialog_button_state.dart';
-import 'package:test_in_action/app/components/picker/number_picker/default_number_picker_state.dart';
-import 'package:test_in_action/app/modules/search/choose_type/choose_type_state.dart';
+import 'package:test_in_action/app/modules/search/choose_item/choose_item_state.dart';
 import 'package:test_in_action/app/modules/search/picker_button/picker_button_state.dart';
 
 class SearchHomeState {
@@ -20,7 +20,15 @@ class SearchHomeState {
       DataPickerDialogButtonState();
 
   /// 类型选择器state
-  final ChooseTypeState chooseTypeState = ChooseTypeState();
-
+  final ChooseItemState chooseTypeState = ChooseItemState();
   final PickerButtonState pickerButtonState = PickerButtonState();
+
+  SearchHomeState() {
+    chooseTypeState.items.addAll([
+      const Item("One way", "1", FontAwesomeIcons.rightLong),
+      const Item("Multiple Ways", "2", FontAwesomeIcons.rightLeft),
+      const Item("Round way", "3", FontAwesomeIcons.arrowsSplitUpAndLeft),
+    ]);
+    chooseTypeState.chosenItem = chooseTypeState.items[0].obs;
+  }
 }
