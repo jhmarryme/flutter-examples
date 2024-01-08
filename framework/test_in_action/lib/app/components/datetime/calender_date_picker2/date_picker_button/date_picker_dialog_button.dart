@@ -6,11 +6,10 @@ import 'package:test_in_action/common/constants/colors.dart';
 
 import 'date_picker_dialog_button_state.dart';
 
-class DatePickerButton<DatePickerState extends DataPickerDialogButtonState>
-    extends StatelessWidget {
+class DatePickerButton extends StatelessWidget {
   const DatePickerButton({super.key, required this.state});
 
-  final DatePickerState state;
+  final DataPickerDialogButtonState state;
 
   @override
   Widget build(BuildContext context) {

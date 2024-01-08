@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../login_logic.dart';
-import 'components/login_form.dart';
-import 'components/login_screen_top_image.dart';
+import 'components/sign_up_top_image.dart';
+import 'components/signup_form.dart';
+import 'sign_up_logic.dart';
 
-class LoginViewSmall extends GetView<LoginLogic> {
-  const LoginViewSmall({Key? key}) : super(key: key);
+class SignUpViewSmall extends GetView<SignUpLogic> {
+  const SignUpViewSmall({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        LoginScreenTopImage(),
+        SignUpScreenTopImage(),
         Row(
           children: [
             Spacer(),
-            Expanded(flex: 8, child: LoginForm()),
+            Expanded(flex: 8, child: SignUpForm()),
             Spacer(),
           ],
         ),
+        // const SocalSignUp()
       ],
     );
   }

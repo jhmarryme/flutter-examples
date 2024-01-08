@@ -4,6 +4,8 @@ import 'components/login_signup_btn.dart';
 import 'components/welcome_image.dart';
 
 class WelcomeViewLarge extends StatelessWidget {
+  const WelcomeViewLarge({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Row(

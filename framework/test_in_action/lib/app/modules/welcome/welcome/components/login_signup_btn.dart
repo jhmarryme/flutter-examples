@@ -4,9 +4,7 @@ import 'package:test_in_action/app/routes/router_define.dart';
 import 'package:test_in_action/common/constants/style_constants.dart';
 
 class LoginAndSignupBtn extends StatelessWidget {
-  const LoginAndSignupBtn({
-    Key? key,
-  }) : super(key: key);
+  const LoginAndSignupBtn({super.key});
 
   @override
   Widget build(BuildContext context) {

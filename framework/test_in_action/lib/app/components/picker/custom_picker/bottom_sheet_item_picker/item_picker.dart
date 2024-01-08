@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import 'package:test_in_action/app/components/bottom_sheet/modal_bottom_sheet_builder.dart';
 import 'package:test_in_action/common/constants/colors.dart';
 
-import 'choose_item_state.dart';
+import 'item_picker_state.dart';
 
-class ChooseItemComponent extends StatelessWidget {
-  const ChooseItemComponent(
+class BottomSheetItemPicker extends StatelessWidget {
+  const BottomSheetItemPicker(
       {super.key, this.title = "Default Title", required this.state});
 
   final String title;
-  final ChooseItemState state;
+  final ItemPickerState state;
 
   @override
   Widget build(BuildContext context) {

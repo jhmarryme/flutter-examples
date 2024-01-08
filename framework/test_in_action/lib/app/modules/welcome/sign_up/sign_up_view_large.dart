@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_in_action/common/constants/style_constants.dart';
 
-import '../sign_up_logic.dart';
 import 'components/sign_up_top_image.dart';
 import 'components/signup_form.dart';
+import 'sign_up_logic.dart';
 
 class SignUpViewLarge extends GetView<SignUpLogic> {
   const SignUpViewLarge({Key? key}) : super(key: key);

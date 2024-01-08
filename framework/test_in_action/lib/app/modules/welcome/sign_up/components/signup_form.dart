@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_in_action/app/components/business/already_have_an_account_acheck.dart';
+import 'package:test_in_action/app/routes/router_define.dart';
 import 'package:test_in_action/common/constants/style_constants.dart';
 
-import '../../login_logic.dart';
-
-class LoginForm extends StatelessWidget {
-  const LoginForm({
-    Key? key,
-  }) : super(key: key);
+class SignUpForm extends StatelessWidget {
+  const SignUpForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.find<LoginLogic>();
     return Form(
       child: Column(
         children: [
           TextFormField(
-            controller: logic.usernameTextController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: StyleConstants.kPrimaryColor,
@@ -34,10 +29,9 @@ class LoginForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 vertical: StyleConstants.defaultPadding),
             child: TextFormField(
-              controller: logic.passwordTextController,
               textInputAction: TextInputAction.done,
               obscureText: true,
-              cursorColor: StyleConstants.kPrimaryColor,
+              // cursorColor: StyleConstants.kPrimaryColor,
               decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
@@ -47,17 +41,16 @@ class LoginForm extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: StyleConstants.defaultPadding),
-          Hero(
-            tag: "login_btn",
-            child: ElevatedButton(
-              onPressed: () => logic.login(),
-              child: Text("Login".toUpperCase()),
-            ),
+          const SizedBox(height: StyleConstants.defaultPadding / 2),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Sign Up".toUpperCase()),
           ),
           const SizedBox(height: StyleConstants.defaultPadding),
           AlreadyHaveAnAccountCheck(
-            press: () => null,
+            login: false,
+            press: () =>
+                GoRouter.of(context).goNamed(WelcomeRouterDefine.login.name),
           ),
         ],
       ),

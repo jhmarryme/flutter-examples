@@ -4,13 +4,12 @@ import 'package:go_router/src/route.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:test_in_action/common/builder/sidebarx_style_builder.dart';
 
-import '../root_logic.dart';
+import 'root_logic.dart';
 
 /// 主页
 /// 适配页面保活
 class RootViewLarge extends GetView<RootLogic> {
-  const RootViewLarge({Key? key, required this.navigationShell})
-      : super(key: key);
+  const RootViewLarge({super.key, required this.navigationShell});
   final StatefulNavigationShell navigationShell;
 
   @override

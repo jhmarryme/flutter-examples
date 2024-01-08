@@ -1,3 +1,4 @@
+import 'package:test_in_action/app/components/business/flight/flight_search_area/components/choose_city_text_inkwell/city_info_entity.dart';
 import 'package:test_in_action/app/dao/search/city_entity.dart';
 import 'package:test_in_action/app/modules/search/search_result/fight_seach_response_entity.dart';
 import 'package:test_in_action/common/http/dio_utils.dart';
@@ -9,6 +10,20 @@ class SearchRequestHelper {
     params["city"] = city;
     List<CityEntity> result =
         await RequestHelper.requestNetwork<List<CityEntity>>(
+      Method.post,
+      params: params,
+      showLoading: false,
+      url:
+          "https://console-mock.apipost.cn/mock/e090c5f3-73d8-4738-b3d8-6beef69b00dc/v1/search/city",
+    );
+    return result;
+  }
+
+  static Future<List<CityInfoEntity>> searchCity(String city) async {
+    final Map<String, dynamic> params = <String, dynamic>{};
+    params["city"] = city;
+    List<CityInfoEntity> result =
+        await RequestHelper.requestNetwork<List<CityInfoEntity>>(
       Method.post,
       params: params,
       showLoading: false,

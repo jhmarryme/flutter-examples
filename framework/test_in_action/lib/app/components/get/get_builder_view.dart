@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 abstract class GetBuilderView<P extends GetxController>
     extends StatelessWidget {
-  const GetBuilderView({Key? key}) : super(key: key);
+  const GetBuilderView({super.key});
 
   final String? tag = null;
 

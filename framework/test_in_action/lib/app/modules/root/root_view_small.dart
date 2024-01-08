@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import '../root_logic.dart';
+import 'root_logic.dart';
 
 class RootViewSmall extends GetView<RootLogic> {
-  const RootViewSmall({Key? key, required this.navigationShell})
-      : super(key: key);
+  const RootViewSmall({super.key, required this.navigationShell});
+
   final StatefulNavigationShell navigationShell;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

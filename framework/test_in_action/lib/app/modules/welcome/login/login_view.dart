@@ -4,11 +4,12 @@ import 'package:test_in_action/app/components/background.dart';
 import 'package:test_in_action/app/components/responsive/responsive_helper.dart';
 
 import 'login_logic.dart';
-import 'views/login_view_large.dart';
-import 'views/login_view_small.dart';
+import 'login_view_large.dart';
+import 'login_view_small.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({Key? key, this.redirectLocation}) : super(key: key);
+  const LoginView({super.key, this.redirectLocation});
+
   final String? redirectLocation;
 
   @override

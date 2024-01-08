@@ -29,7 +29,7 @@ class Item {
   const Item(this.name, this.value, this.iconData);
 }
 
-class ChooseItemState {
+class ItemPickerState {
   /// 列表项数据
   final items = <Item>[].obs;
 

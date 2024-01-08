@@ -104,7 +104,7 @@ class _IntroduceViewState extends State<IntroduceView> {
           color: ColorStyle.kGrey400,
           activeColor: ColorStyle.kBlue,
           activeSize: Size(22.0.spMin, 10.0.spMin),
-          activeShape: RoundedRectangleBorder(
+          activeShape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25.0))),
         ),
       ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../login_logic.dart';
 import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
+import 'login_logic.dart';
 
 class LoginViewLarge extends GetView<LoginLogic> {
-  const LoginViewLarge({Key? key}) : super(key: key);
+  const LoginViewLarge({super.key});
 
   @override
   Widget build(BuildContext context) {

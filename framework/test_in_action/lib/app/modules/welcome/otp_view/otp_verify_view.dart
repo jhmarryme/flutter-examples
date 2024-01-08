@@ -6,7 +6,8 @@ import 'package:test_in_action/app/components/get/get_builder_view.dart';
 import 'otp_verify_logic.dart';
 
 class OtpVerifyView extends GetBuilderView<OtpVerifyLogic> {
-  const OtpVerifyView({Key? key, required this.username}) : super(key: key);
+  const OtpVerifyView({super.key, required this.username});
+
   final String username;
 
   @override

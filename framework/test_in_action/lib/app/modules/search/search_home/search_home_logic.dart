@@ -1,20 +1,15 @@
 import 'package:get/get.dart';
-import 'package:test_in_action/app/dao/search/city_entity.dart';
-
-import 'search_home_state.dart';
+import 'package:test_in_action/app/components/business/flight/flight_search_area/components/choose_city_text_inkwell/city_info_entity.dart';
+import 'package:test_in_action/app/components/business/flight/flight_search_area/flight_search_area_state.dart';
+import 'package:test_in_action/app/dao/search/search_request_helper.dart';
 
 class SearchHomeLogic extends GetxController {
-  final SearchHomeState state = SearchHomeState();
+  final String flightSearchAreaTag = "flightSearchAreaTag-searchHome";
 
-  /// 交换from/to 选择器的值
-  void swapCity() {
-    bool tempChosen = state.fromCityState.chosen.value;
-    final tempJson = state.fromCityState.data.value.toJson();
+  FlightSearchAreaState get flightSearchState =>
+      Get.find(tag: flightSearchAreaTag);
 
-    state.fromCityState.chosen.value = state.toCityState.chosen.value;
-    state.fromCityState.save(state.toCityState.data.value);
-
-    state.toCityState.chosen.value = tempChosen;
-    state.toCityState.save(CityEntity.fromJson(tempJson));
+  Future<List<CityInfoEntity>> searchCity(String keyword) async {
+    return await SearchRequestHelper.searchCity(keyword);
   }
 }
